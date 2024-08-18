@@ -62,7 +62,4 @@ router.delete("/:id", isLoggedIn, isListingOwner, async (req, res) => {
     res.redirect("/listings");
 });
 
-res.redirect("/listings");
-});
-
 module.exports=router;

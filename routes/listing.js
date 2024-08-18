@@ -51,7 +51,7 @@ res.redirect(`/listings/${id}`);
 
 });
 //Delete Route
-router.delete("/:id", isLoggedIn, isListingOwner, async (req, res) => {
+router.delete("/:id", isLoggedIn, async (req, res) => {
     let { id } = req.params;
     let deletedListing = await Listing.findByIdAndDelete(id);
     if (!deletedListing) {

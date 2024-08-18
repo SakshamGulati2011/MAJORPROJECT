@@ -51,11 +51,16 @@ res.redirect(`/listings/${id}`);
 
 });
 //Delete Route
-router.delete("/:id",isLoggedIn,isReviewAuthor, async (req, res) => {
-let { id } = req.params;
-let deletedListing = await Listing.findByIdAndDelete(id);
-// console.log(deletedListing);
-req.flash('success','Listing Deleted');
+router.delete("/:id", isLoggedIn, isListingOwner, async (req, res) => {
+    let { id } = req.params;
+    let deletedListing = await Listing.findByIdAndDelete(id);
+    if (!deletedListing) {
+        req.flash('error', 'Listing not found');
+        return res.redirect('/listings');
+    }
+    req.flash('success', 'Listing Deleted');
+    res.redirect("/listings");
+});
 
 res.redirect("/listings");
 });

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Listing = require("../models/listing.js");
-const {isLoggedIn,isReviewAuthor}=require('../middleware.js');
+const { isLoggedIn, isListingOwner } = require('../middleware.js');
 
 //INDEX ROUTE
 router.get("/", async (req, res) => {
